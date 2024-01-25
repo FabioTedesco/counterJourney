@@ -105,28 +105,28 @@ function rollDice() {
   btnContainer.appendChild(incrementDisplay);
 }
 
-const gameBoard = [];
 
-function storeGameBoard() {
-  const gameBoardContainer = document.getElementById('boardgame');
-  const gameBoardBoxes = gameBoardContainer.children;
-  Array.from(gameBoardBoxes).forEach(box => {
-    gameBoard.push(box);
-  });
-}
+//EVENTS
 
-storeGameBoard();
+//Roll the dice
+diceBtn.addEventListener('click', () => {
+  rollDice();
+});
 
 
-
+//counter
 const boardContainer = document.getElementById('boardgame');
 const airplane = document.getElementById('airplane');
+let incrementDisplayCount;
 
 
   plusBtn.addEventListener('click', () => {
 
     count++;
     counterDisplay.textContent = count;
+    incrementDisplayCount = diceResult;
+    incrementDisplay.textContent = `+${incrementDisplayCount-1}`;   //riprendi da qui
+
 
     document.getElementById(`flag-${count}`).removeChild(airplane);
     const nextFlag = document.getElementById(`flag-${count}`).nextElementSibling;
@@ -148,12 +148,6 @@ const airplane = document.getElementById('airplane');
   })
 
 
-//EVENTS
-
-//Roll the dice
-diceBtn.addEventListener('click', () => {
-  rollDice();
-});
 
 
 
@@ -166,3 +160,16 @@ rulesBtn.addEventListener('click', () => {
   });
 })
 
+
+
+// const gameBoard = [];
+
+// function storeGameBoard() {
+//   const gameBoardContainer = document.getElementById('boardgame');
+//   const gameBoardBoxes = gameBoardContainer.children;
+//   Array.from(gameBoardBoxes).forEach(box => {
+//     gameBoard.push(box);
+//   });
+// }
+
+// storeGameBoard();
