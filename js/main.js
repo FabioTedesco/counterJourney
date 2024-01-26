@@ -15,8 +15,7 @@ const resultParagraph = document.createElement('p');
 
 document.body.append(diceContainer);
 diceContainer.appendChild(diceBtn);
-diceContainer.appendChild(diceImg);
-diceContainer.appendChild(resultParagraph);
+
 
 
 //CREATE COUNTER CONTAINER
@@ -81,6 +80,8 @@ document.body.append(counterContainer);
 function rollDice() {
   isRollDicePressed = true;
   isPlusBtnBlocked = false;
+  diceContainer.appendChild(diceImg);
+  diceContainer.appendChild(resultParagraph);
 
   const value = Math.floor(Math.random() * 6) + 1;
   diceResult = value;
@@ -111,8 +112,6 @@ function plusCounter() {
       const nextFlag = document.getElementById(`flag-${count}`).nextElementSibling;
       nextFlag.appendChild(airplane);
 
-      console.log(incrementDisplayValue);
-
       if(count === 29) {                
         Swal.fire({
           title: "Good job!",
@@ -122,17 +121,25 @@ function plusCounter() {
         count = 0;
         counterDisplay.textContent = count;
         btnContainer.removeChild(incrementDisplay);
-        console.log(incrementDisplayValue);
+        // console.log(incrementDisplayValue);
           //DA AGGIUNGERE SE VINCI CHE SI RESETTA TUTTO
         }
-    }
-
-    if(incrementDisplayValue === 0) {
+    } else {
       incrementDisplay.textContent = 'Roll the dice';
       isPlusBtnBlocked = true;
     }
+    msg(incrementDisplayValue);
   }
 }
+
+function msg(incrementDisplayValue) {
+  if(airplane.parentElement.id === 'flag-4' && incrementDisplayValue === 0) {
+    console.log('move back 3 times');
+  }
+}
+
+
+
 
 function reset() {
   document.getElementById(`flag-${count+1}`).removeChild(airplane);
@@ -148,6 +155,11 @@ function reset() {
 }
 
 
+const engFlag = document.getElementById('flag-4');
+
+function minusCounter() {
+
+}
 
 //EVENTS
 //Roll the dice
