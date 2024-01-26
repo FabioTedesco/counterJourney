@@ -2,7 +2,7 @@
 //CREATE DICE CONTAINER
 const diceContainer = document.createElement('div');
 diceContainer.id = 'diceContainer';
-diceContainer.style.backgroundColor = 'yellow';
+// diceContainer.style.backgroundColor = 'yellow';
 diceContainer.classList.add('diceContainer');
 
 const diceBtn = document.createElement('button');
@@ -23,7 +23,7 @@ diceContainer.appendChild(diceBtn);
 const counterContainer = document.createElement('div');
 counterContainer.id = 'counterContainer';
 counterContainer.className = 'counterContainer';
-counterContainer.style.backgroundColor = 'green';
+// counterContainer.style.backgroundColor = 'green';
 
 //Div 1 --> h1 and counter display
 const h2pContainer = document.createElement('div');
@@ -37,7 +37,7 @@ counterDisplay.textContent = 0;
 const btnContainer = document.createElement('div');
 btnContainer.className = 'btnContainer';
 
-
+const decrementDisplay = document.createElement('p');
 const minusBtn = document.createElement('button');
 minusBtn.textContent = '-';
 const resetBtn = document.createElement('button');
@@ -139,8 +139,6 @@ function msg(incrementDisplayValue) {
 }
 
 
-
-
 function reset() {
   document.getElementById(`flag-${count+1}`).removeChild(airplane);
   const nextFlag = document.getElementById('flag-1');
@@ -155,11 +153,9 @@ function reset() {
 }
 
 
-const engFlag = document.getElementById('flag-4');
 
-function minusCounter() {
 
-}
+
 
 //EVENTS
 //Roll the dice

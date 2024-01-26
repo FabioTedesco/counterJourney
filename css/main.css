@@ -1,9 +1,18 @@
 body {
   text-align: center;
+  background-image: url(/img/travel-1767532_1280.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: wheat;
 }
 
 * {
   margin: 0;
+}
+
+h1 {
+  margin: 20px;
 }
 
 button {
@@ -12,13 +21,13 @@ button {
   margin: 0 5px;
   border-radius: 10px;
   border: none;
-  background-color: rgb(158, 158, 210);
+  background-color: rgba(198, 185, 160, 0.85);
   color: white;
   font-weight: bold;
   cursor: pointer;
 }
 button:hover {
-  background-color: rgba(158, 158, 210, 0.9);
+  background-color: rgba(198, 185, 160, 0.6);
 }
 
 .diceContainer {
@@ -34,6 +43,8 @@ button:hover {
 }
 .diceContainer p {
   margin-left: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 .counterContainer .h2pContainer {
@@ -43,6 +54,8 @@ button:hover {
 }
 .counterContainer .btnContainer p {
   display: inline-flex;
+  font-size: 1.5rem;
+  margin-left: 20px;
 }
 .counterContainer .playGameContainer {
   display: flex;
@@ -56,11 +69,11 @@ button:hover {
   column-gap: 5px;
   row-gap: 5px;
   margin: 10px 5%;
+  border: 1px solid rgb(198, 185, 160);
+  padding: 10px 0;
 }
 .boardgame .box {
-  background-color: grey;
-  border: 1px solid black;
-  height: 50px;
+  height: 70px;
   position: relative;
 }
 .boardgame .box img {

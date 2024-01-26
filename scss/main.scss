@@ -1,9 +1,20 @@
 body{
   text-align: center;
+
+  background-image: url(/img/travel-1767532_1280.jpg);  //Foto di <a href="https://pixabay.com/it/users/bulletrain743-3598825/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1767532">Nikhil Kurian</a> da <a href="https://pixabay.com/it//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=1767532">Pixabay</a>
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  color: wheat;
 }
 
 *{
   margin: 0;
+}
+
+h1{
+  margin: 20px;
 }
 
 button{
@@ -12,13 +23,13 @@ button{
   margin: 0 5px;
   border-radius: 10px;
   border: none;
-  background-color: rgb(158, 158, 210);
+  background-color: rgba(198, 185, 160, 0.85);
   color: white;
   font-weight: bold;
   cursor: pointer;
   
   &:hover{
-  background-color: rgba(158, 158, 210, 0.9);
+  background-color: rgba(198, 185, 160, 0.6);
 
   }
 }
@@ -37,6 +48,8 @@ button{
 
   p{
     margin-left: 1rem;
+    font-size: 2rem;
+    font-weight: bold;
   }
 }
 
@@ -47,14 +60,19 @@ button{
     text-align: center; 
     padding-bottom: 5px;   
     font-size: 2rem;
+
+    
   }
 
   .btnContainer{
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
+    // display: grid;
+    // grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    // border: 1px solid black;
+
     p{
       display:inline-flex;
+      font-size: 1.5rem;
+      margin-left: 20px;
     }
   }
 
@@ -71,11 +89,11 @@ button{
   column-gap: 5px;
   row-gap: 5px;
   margin: 10px 5%;
+  border: 1px solid rgb(198, 185, 160);
+  padding: 10px 0;
 
   .box{
-    background-color: grey;
-    border: 1px solid black;
-    height: 50px;
+    height: 70px;
     position: relative;
     
     img{
