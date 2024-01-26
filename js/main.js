@@ -77,7 +77,7 @@ document.body.append(counterContainer);
 
 
 //COUNTER 
-let count = 0;
+
 
 minusBtn.addEventListener('click', () => {
   count--;
@@ -101,8 +101,42 @@ function rollDice() {
   diceImg.src = `/img/Dice-${diceResult}.png`;
   diceImg.style.display = 'block';
   resultParagraph.textContent = `Move your player ${diceResult} spaces`;
-  incrementDisplay.textContent = `+${diceResult}`;
+  incrementDisplay.innerHTML = '+' + diceResult;
   btnContainer.appendChild(incrementDisplay);
+}
+
+let count = 0;
+const boardContainer = document.getElementById('boardgame');
+const airplane = document.getElementById('airplane');
+
+function plusCounter() {
+  let incrementDisplayContent = incrementDisplay.textContent;
+  incrementDisplayContent = parseInt(incrementDisplayContent);
+  
+  if(incrementDisplayContent > 1) {
+    incrementDisplay.textContent = `+${incrementDisplayContent-1}`;
+    console.log(incrementDisplayContent);
+  } else {
+    btnContainer.removeChild(incrementDisplay);
+  }
+
+  if(incrementDisplayContent>=1) {
+    count++;
+    counterDisplay.textContent = count;
+  }
+  
+  document.getElementById(`flag-${count}`).removeChild(airplane);
+  const nextFlag = document.getElementById(`flag-${count}`).nextElementSibling;
+  nextFlag.appendChild(airplane);
+  if(count === 29) {                
+    Swal.fire({
+      title: "Good job!",
+      text: "You Win!",
+      icon: "success"
+    });  
+    count = 0;
+    counterDisplay.textContent = count;
+  }
 }
 
 
@@ -111,40 +145,25 @@ function rollDice() {
 //Roll the dice
 diceBtn.addEventListener('click', () => {
   rollDice();
+  
 });
 
 
 //counter
-const boardContainer = document.getElementById('boardgame');
-const airplane = document.getElementById('airplane');
-let incrementDisplayCount;
+
 
 
   plusBtn.addEventListener('click', () => {
-
-    count++;
-    counterDisplay.textContent = count;
-    incrementDisplayCount = diceResult;
-    incrementDisplay.textContent = `+${incrementDisplayCount-1}`;   //riprendi da qui
-
-
-    document.getElementById(`flag-${count}`).removeChild(airplane);
-    const nextFlag = document.getElementById(`flag-${count}`).nextElementSibling;
-    nextFlag.appendChild(airplane);
-    if(count === 29) {                
-      Swal.fire({
-        title: "Good job!",
-        text: "You Win!",
-        icon: "success"
-      });
-      
-    }
+    plusCounter();
   })
 
+
+
   minusBtn.addEventListener('click', () => {
-    document.getElementById(`flag-${count+1}`).removeChild(airplane);
-    const previousFlag = document.getElementById(`flag-${count+1}`).previousElementSibling;
-    previousFlag.appendChild(airplane);
+    minusCounter();
+    // document.getElementById(`flag-${count+1}`).removeChild(airplane);
+    // const previousFlag = document.getElementById(`flag-${count+1}`).previousElementSibling;
+    // previousFlag.appendChild(airplane);
   })
 
 
