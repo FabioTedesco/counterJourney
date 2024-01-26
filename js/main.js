@@ -1,6 +1,4 @@
-let diceResult;
-
-
+//CREATE HTML
 //CREATE DICE CONTAINER
 const diceContainer = document.createElement('div');
 diceContainer.id = 'diceContainer';
@@ -12,7 +10,6 @@ diceBtn.textContent = 'Roll the dice';
 
 const diceImg = document.createElement('img');
 diceImg.style.display = 'none';
-
 
 const resultParagraph = document.createElement('p');
 
@@ -50,8 +47,6 @@ const plusBtn = document.createElement('button');
 plusBtn.textContent = '+';
 const incrementDisplay = document.createElement('p');
 
-
-
 //div 3 --> playGameBtn & rulesBtn
 const playGameContainer = document.createElement('div');
 playGameContainer.className = 'playGameContainer';
@@ -75,27 +70,18 @@ document.body.append(counterContainer);
     playGameContainer.appendChild(rulesBtn);
   
 
+//VARIABLES
+  let diceResult;
 
-//COUNTER 
-
-
-minusBtn.addEventListener('click', () => {
-  count--;
-  counterDisplay.textContent = count;
-})
-resetBtn.addEventListener('click', () => {
-  count = 0;
-  counterDisplay.textContent = count;
-})
-// plusBtn.addEventListener('click', () => {
-  
-// })
-
-//RULES
+  let isRollDicePressed = false;   //forse serve per il btn play the game oppure è da levare
+  let isPlusBtnBlocked = true;
 
 
 //FUNCTIONS
 function rollDice() {
+  isRollDicePressed = true;
+  isPlusBtnBlocked = false;
+
   const value = Math.floor(Math.random() * 6) + 1;
   diceResult = value;
   diceImg.src = `/img/Dice-${diceResult}.png`;
@@ -110,60 +96,76 @@ const boardContainer = document.getElementById('boardgame');
 const airplane = document.getElementById('airplane');
 
 function plusCounter() {
-  let incrementDisplayContent = incrementDisplay.textContent;
-  incrementDisplayContent = parseInt(incrementDisplayContent);
+  if(isPlusBtnBlocked === false) {
+    let incrementDisplayValue = incrementDisplay.textContent;
+    incrementDisplayValue = parseInt(incrementDisplayValue);
   
-  if(incrementDisplayContent > 1) {
-    incrementDisplay.textContent = `+${incrementDisplayContent-1}`;
-    console.log(incrementDisplayContent);
-  } else {
-    btnContainer.removeChild(incrementDisplay);
-  }
+    if(incrementDisplayValue>0) {
+      incrementDisplay.textContent = `+${incrementDisplayValue-1}`;
+      incrementDisplayValue--;
 
-  if(incrementDisplayContent>=1) {
-    count++;
-    counterDisplay.textContent = count;
-  }
-  
-  document.getElementById(`flag-${count}`).removeChild(airplane);
-  const nextFlag = document.getElementById(`flag-${count}`).nextElementSibling;
-  nextFlag.appendChild(airplane);
-  if(count === 29) {                
-    Swal.fire({
-      title: "Good job!",
-      text: "You Win!",
-      icon: "success"
-    });  
-    count = 0;
-    counterDisplay.textContent = count;
+      count++;
+      counterDisplay.textContent = count;
+
+      document.getElementById(`flag-${count}`).removeChild(airplane);
+      const nextFlag = document.getElementById(`flag-${count}`).nextElementSibling;
+      nextFlag.appendChild(airplane);
+
+      console.log(incrementDisplayValue);
+
+      if(count === 29) {                
+        Swal.fire({
+          title: "Good job!",
+          text: "You Win!",
+          icon: "success"
+        });  
+        count = 0;
+        counterDisplay.textContent = count;
+        btnContainer.removeChild(incrementDisplay);
+        console.log(incrementDisplayValue);
+          //DA AGGIUNGERE SE VINCI CHE SI RESETTA TUTTO
+        }
+    }
+
+    if(incrementDisplayValue === 0) {
+      incrementDisplay.textContent = 'Roll the dice';
+      isPlusBtnBlocked = true;
+    }
   }
 }
 
+function reset() {
+  document.getElementById(`flag-${count+1}`).removeChild(airplane);
+  const nextFlag = document.getElementById('flag-1');
+  nextFlag.appendChild(airplane);
+
+  count = 0;
+  counterDisplay.textContent = count;
+  btnContainer.removeChild(incrementDisplay);
+
+  diceContainer.removeChild(diceImg);
+  diceContainer.removeChild(resultParagraph);
+}
+
+
 
 //EVENTS
-
 //Roll the dice
 diceBtn.addEventListener('click', () => {
   rollDice();
-  
 });
 
-
 //counter
-
-
-
   plusBtn.addEventListener('click', () => {
-    plusCounter();
+     plusCounter();
   })
 
-
+  resetBtn.addEventListener('click', () => {
+    reset();
+  })
 
   minusBtn.addEventListener('click', () => {
-    minusCounter();
-    // document.getElementById(`flag-${count+1}`).removeChild(airplane);
-    // const previousFlag = document.getElementById(`flag-${count+1}`).previousElementSibling;
-    // previousFlag.appendChild(airplane);
+  
   })
 
 
