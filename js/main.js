@@ -16,8 +16,6 @@ const resultParagraph = document.createElement('p');
 document.body.append(diceContainer);
 diceContainer.appendChild(diceBtn);
 
-
-
 //CREATE COUNTER CONTAINER
 //counter container
 const counterContainer = document.createElement('div');
@@ -134,7 +132,11 @@ function plusCounter() {
 
 function msg(incrementDisplayValue) {
   if(airplane.parentElement.id === 'flag-4' && incrementDisplayValue === 0) {
-    console.log('move back 3 times');
+    Swal.fire({
+      title: "Ora del the",
+      text: "torna indietro di 3",
+      icon: "warning"
+    });
   }
 }
 
