@@ -2,7 +2,6 @@
 //CREATE DICE CONTAINER
 const diceContainer = document.createElement('div');
 diceContainer.id = 'diceContainer';
-// diceContainer.style.backgroundColor = 'yellow';
 diceContainer.classList.add('diceContainer');
 
 const diceBtn = document.createElement('button');
@@ -21,7 +20,6 @@ diceContainer.appendChild(diceBtn);
 const counterContainer = document.createElement('div');
 counterContainer.id = 'counterContainer';
 counterContainer.className = 'counterContainer';
-// counterContainer.style.backgroundColor = 'green';
 
 //Div 1 --> h1 and counter display
 const h2pContainer = document.createElement('div');
@@ -44,13 +42,33 @@ const plusBtn = document.createElement('button');
 plusBtn.textContent = '+';
 const incrementDisplay = document.createElement('p');
 
-//div 3 --> playGameBtn & rulesBtn
+//div 3 --> rulesBtn
 const rulesContainer = document.createElement('div');
 rulesContainer.className = 'rulesContainer';
 
 const rulesBtn = document.createElement('button');
 rulesBtn.textContent = 'Read the rules';
 
+//footer
+const footer = document.createElement('footer');
+const copyright = document.createElement('p');
+copyright.textContent = 'Copyright © 2023 by Fabio Tedesco | All Rights Reserved.';
+const socialContainer = document.createElement('div');
+const linkedin = document.createElement('a');
+linkedin.setAttribute('href', "https://www.linkedin.com/in/fabio-tedesco-3bb865251/");
+linkedin.setAttribute('target', '_blank');
+const linkedinImg = document.createElement('img');
+linkedinImg.src = '/img/social/icons8-linkedin.svg';
+const instagram = document.createElement('a');
+instagram.setAttribute('href', "https://www.instagram.com/fabioo_pueblo/");
+instagram.setAttribute('target', '_blank');
+const instagramImg = document.createElement('img');
+instagramImg.src = '/img/social/icons8-instagram.svg';
+const github = document.createElement('a');
+github.setAttribute('href', "https://github.com/FabioTedesco?tab=repositories");
+github.setAttribute('target', '_blank');
+const githubImg = document.createElement('img');
+githubImg.src = '/img/social/icons8-github.svg';
 
 document.body.append(counterContainer);
   counterContainer.appendChild(h2pContainer);
@@ -62,7 +80,15 @@ document.body.append(counterContainer);
     btnContainer.appendChild(plusBtn);
   counterContainer.appendChild(rulesContainer);
     rulesContainer.appendChild(rulesBtn);
-  
+document.body.append(footer);
+  footer.appendChild(copyright);
+  footer.appendChild(socialContainer);
+    socialContainer.appendChild(linkedin);
+      linkedin.appendChild(linkedinImg);
+      linkedin.appendChild(instagramImg);
+      linkedin.appendChild(githubImg);
+    socialContainer.appendChild(instagram);
+    socialContainer.appendChild(github);
 
 //VARIABLES
   let diceResult;
