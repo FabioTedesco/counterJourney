@@ -54,8 +54,8 @@ button:hover {
 }
 .counterContainer .btnContainer p {
   display: inline-flex;
-  font-size: 1.5rem;
-  margin-left: 20px;
+  font-size: 2rem;
+  margin: 5px;
 }
 .counterContainer .playGameContainer {
   display: flex;

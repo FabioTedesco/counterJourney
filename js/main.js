@@ -72,11 +72,14 @@ document.body.append(counterContainer);
 
   let isRollDicePressed = false;   //forse serve per il btn play the game oppure è da levare
   let isPlusBtnBlocked = true;
+  let count = 0;
+  const boardContainer = document.getElementById('boardgame');
+  const airplane = document.getElementById('airplane');
 
 
 //FUNCTIONS
 function rollDice() {
-  isRollDicePressed = true;
+  // isRollDicePressed = true;
   isPlusBtnBlocked = false;
   diceContainer.appendChild(diceImg);
   diceContainer.appendChild(resultParagraph);
@@ -89,11 +92,6 @@ function rollDice() {
   incrementDisplay.innerHTML = '+' + diceResult;
   btnContainer.appendChild(incrementDisplay);
 }
-
-let count = 0;
-const boardContainer = document.getElementById('boardgame');
-const airplane = document.getElementById('airplane');
-
 
 function plusCounter() {
   if(isPlusBtnBlocked === false) {
@@ -129,9 +127,41 @@ function plusCounter() {
       incrementDisplay.textContent = 'Roll the dice';
       isPlusBtnBlocked = true;
     }
+  } 
+  else {
+    Swal.fire("Roll the dice first!");
   }
+  
 }
 
+
+
+isMinusBtnBlocked = true;
+
+
+function minusCounter() {
+  if(isMinusBtnBlocked === false) {
+    let decrementDisplayValue = decrementDisplay.textContent;
+    decrementDisplayValue = parseInt(decrementDisplayValue);
+
+    if(decrementDisplayValue < 0) {
+      decrementDisplayValue++;
+      decrementDisplay.textContent = decrementDisplayValue;
+
+      document.getElementById(`flag-${count+1}`).removeChild(airplane);
+      const prevFlag = document.getElementById(`flag-${count+1}`).previousElementSibling;
+      prevFlag.appendChild(airplane);
+
+      count--;
+      counterDisplay.textContent = count;
+
+      if(decrementDisplayValue === 0) {
+        isMinusBtnBlocked = true;
+        decrementDisplay.textContent = '';
+      }
+    }
+  }
+}
 
 function msg(incrementDisplayValue,incrementDisplayValue, incrementDisplay) {
   if(incrementDisplayValue === 0) {
@@ -147,14 +177,18 @@ function generateProbability(incrementDisplayValue, incrementDisplay) {
   const extraMovement = Math.floor(Math.random() * 4) + 1;
   const probability = Math.round(Math.random() * 100);
 
-  if(probability <= 30) {
-    console.log(negativeMsg[negativeMsgRandomIndex]);
-    console.log(`torna indietro di ${extraMovement} caselle`);
+  if(probability <= 30 && count > 4) {
+    console.log(count);
+    Swal.fire({
+      title: negativeMsg[negativeMsgRandomIndex],
+      text: `torna indietro di ${extraMovement} caselle`,
+    });
+    isMinusBtnBlocked = false;
 
+    decrementDisplay.textContent = `-${extraMovement}`;
+    btnContainer.prepend(decrementDisplay);
 
   } else if(probability > 70) {
-    console.log(positiveMsg[positiveMsgRandomIndex]);
-    // console.log(`vai avanti di ${extraMovement} caselle`);
     Swal.fire({
       title: positiveMsg[positiveMsgRandomIndex],
       text: `vai avanti di ${extraMovement} caselle`,
@@ -164,7 +198,9 @@ function generateProbability(incrementDisplayValue, incrementDisplay) {
   } 
 }
 
-function reset() {
+
+
+function reset() {   //ricontrolla reset 
   document.getElementById(`flag-${count+1}`).removeChild(airplane);
   const nextFlag = document.getElementById('flag-1');
   nextFlag.appendChild(airplane);
@@ -198,7 +234,7 @@ diceBtn.addEventListener('click', () => {
   })
 
   minusBtn.addEventListener('click', () => {
-  
+    minusCounter();
   })
 
 
