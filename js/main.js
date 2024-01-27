@@ -72,6 +72,8 @@ document.body.append(counterContainer);
 
   let isRollDicePressed = false;   //forse serve per il btn play the game oppure è da levare
   let isPlusBtnBlocked = true;
+  isMinusBtnBlocked = true;
+
   let count = 0;
   const boardContainer = document.getElementById('boardgame');
   const airplane = document.getElementById('airplane');
@@ -117,9 +119,10 @@ function plusCounter() {
           text: "You Win!",
           icon: "success"
         });  
-        count = 0;
-        counterDisplay.textContent = count;
-        btnContainer.removeChild(incrementDisplay);
+        reset();
+        // count = 0;
+        // counterDisplay.textContent = count;
+        // btnContainer.removeChild(incrementDisplay);
         // console.log(incrementDisplayValue);
           //DA AGGIUNGERE SE VINCI CHE SI RESETTA TUTTO
         }
@@ -133,11 +136,6 @@ function plusCounter() {
   }
   
 }
-
-
-
-isMinusBtnBlocked = true;
-
 
 function minusCounter() {
   if(isMinusBtnBlocked === false) {
@@ -177,7 +175,7 @@ function generateProbability(incrementDisplayValue, incrementDisplay) {
   const extraMovement = Math.floor(Math.random() * 4) + 1;
   const probability = Math.round(Math.random() * 100);
 
-  if(probability <= 30 && count > 4) {
+  if(probability <= 30 && count > 4 && count !== 29) {
     console.log(count);
     Swal.fire({
       title: negativeMsg[negativeMsgRandomIndex],
@@ -188,7 +186,7 @@ function generateProbability(incrementDisplayValue, incrementDisplay) {
     decrementDisplay.textContent = `-${extraMovement}`;
     btnContainer.prepend(decrementDisplay);
 
-  } else if(probability > 70) {
+  } else if(probability > 70 && count !== 29) {
     Swal.fire({
       title: positiveMsg[positiveMsgRandomIndex],
       text: `vai avanti di ${extraMovement} caselle`,
@@ -197,8 +195,6 @@ function generateProbability(incrementDisplayValue, incrementDisplay) {
     incrementDisplay.textContent = `+${incrementDisplayValue}`;
   } 
 }
-
-
 
 function reset() {   //ricontrolla reset 
   document.getElementById(`flag-${count+1}`).removeChild(airplane);
@@ -211,12 +207,10 @@ function reset() {   //ricontrolla reset
 
   diceContainer.removeChild(diceImg);
   diceContainer.removeChild(resultParagraph);
+
+  isPlusBtnBlocked = true;
+  isMinusBtnBlocked = true;
 }
-
-
-
-
-
 
 //EVENTS
 //Roll the dice
@@ -237,10 +231,6 @@ diceBtn.addEventListener('click', () => {
     minusCounter();
   })
 
-
-
-
-
 //rules
 rulesBtn.addEventListener('click', () => {
   Swal.fire({
@@ -252,14 +242,3 @@ rulesBtn.addEventListener('click', () => {
 
 
 
-// const gameBoard = [];
-
-// function storeGameBoard() {
-//   const gameBoardContainer = document.getElementById('boardgame');
-//   const gameBoardBoxes = gameBoardContainer.children;
-//   Array.from(gameBoardBoxes).forEach(box => {
-//     gameBoard.push(box);
-//   });
-// }
-
-// storeGameBoard();
