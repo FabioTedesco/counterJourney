@@ -1,4 +1,5 @@
 body {
+  font-family: "Montserrat", sans-serif;
   text-align: center;
   background-image: url(/img/travel-1767532_1280.jpg);
   background-repeat: no-repeat;
@@ -16,6 +17,7 @@ h1 {
 }
 
 button {
+  font-family: "Montserrat", sans-serif;
   font-size: 1.5rem;
   padding: 10px 15px;
   margin: 0 5px;
