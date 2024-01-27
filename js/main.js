@@ -94,6 +94,7 @@ let count = 0;
 const boardContainer = document.getElementById('boardgame');
 const airplane = document.getElementById('airplane');
 
+
 function plusCounter() {
   if(isPlusBtnBlocked === false) {
     let incrementDisplayValue = incrementDisplay.textContent;
@@ -110,6 +111,8 @@ function plusCounter() {
       const nextFlag = document.getElementById(`flag-${count}`).nextElementSibling;
       nextFlag.appendChild(airplane);
 
+      msg(incrementDisplayValue, incrementDisplayValue, incrementDisplay);
+      
       if(count === 29) {                
         Swal.fire({
           title: "Good job!",
@@ -126,20 +129,40 @@ function plusCounter() {
       incrementDisplay.textContent = 'Roll the dice';
       isPlusBtnBlocked = true;
     }
-    msg(incrementDisplayValue);
   }
 }
 
-function msg(incrementDisplayValue) {
-  if(airplane.parentElement.id === 'flag-4' && incrementDisplayValue === 0) {
+
+function msg(incrementDisplayValue,incrementDisplayValue, incrementDisplay) {
+  if(incrementDisplayValue === 0) {
+    generateProbability(incrementDisplayValue, incrementDisplay);
+  }
+}
+
+function generateProbability(incrementDisplayValue, incrementDisplay) {
+  const negativeMsg = ['passaporto', 'perdi aereo', 'hai speso tutto'];
+  const negativeMsgRandomIndex = Math.floor(Math.random() * negativeMsg.length) ;
+  const positiveMsg = ['hai vinto biglietto', 'fai amicizia', 'vinci un viaggio gratis'];
+  const positiveMsgRandomIndex = Math.floor(Math.random() * positiveMsg.length);
+  const extraMovement = Math.floor(Math.random() * 4) + 1;
+  const probability = Math.round(Math.random() * 100);
+
+  if(probability <= 30) {
+    console.log(negativeMsg[negativeMsgRandomIndex]);
+    console.log(`torna indietro di ${extraMovement} caselle`);
+
+
+  } else if(probability > 70) {
+    console.log(positiveMsg[positiveMsgRandomIndex]);
+    // console.log(`vai avanti di ${extraMovement} caselle`);
     Swal.fire({
-      title: "Ora del the",
-      text: "torna indietro di 3",
-      icon: "warning"
+      title: positiveMsg[positiveMsgRandomIndex],
+      text: `vai avanti di ${extraMovement} caselle`,
     });
-  }
+    incrementDisplayValue = extraMovement;
+    incrementDisplay.textContent = `+${incrementDisplayValue}`;
+  } 
 }
-
 
 function reset() {
   document.getElementById(`flag-${count+1}`).removeChild(airplane);
