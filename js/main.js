@@ -45,11 +45,9 @@ plusBtn.textContent = '+';
 const incrementDisplay = document.createElement('p');
 
 //div 3 --> playGameBtn & rulesBtn
-const playGameContainer = document.createElement('div');
-playGameContainer.className = 'playGameContainer';
+const rulesContainer = document.createElement('div');
+rulesContainer.className = 'rulesContainer';
 
-const playGameBtn = document.createElement('button');
-playGameBtn.textContent = 'Play the game';
 const rulesBtn = document.createElement('button');
 rulesBtn.textContent = 'Read the rules';
 
@@ -62,15 +60,13 @@ document.body.append(counterContainer);
     btnContainer.appendChild(minusBtn);
     btnContainer.appendChild(resetBtn);
     btnContainer.appendChild(plusBtn);
-  counterContainer.appendChild(playGameContainer);
-    playGameContainer.appendChild(playGameBtn);
-    playGameContainer.appendChild(rulesBtn);
+  counterContainer.appendChild(rulesContainer);
+    rulesContainer.appendChild(rulesBtn);
   
 
 //VARIABLES
   let diceResult;
 
-  let isRollDicePressed = false;   //forse serve per il btn play the game oppure è da levare
   let isPlusBtnBlocked = true;
   isMinusBtnBlocked = true;
 
@@ -81,7 +77,6 @@ document.body.append(counterContainer);
 
 //FUNCTIONS
 function rollDice() {
-  // isRollDicePressed = true;
   isPlusBtnBlocked = false;
   diceContainer.appendChild(diceImg);
   diceContainer.appendChild(resultParagraph);
@@ -90,7 +85,7 @@ function rollDice() {
   diceResult = value;
   diceImg.src = `/img/Dice-${diceResult}.png`;
   diceImg.style.display = 'block';
-  resultParagraph.textContent = `Move your player ${diceResult} spaces`;
+  resultParagraph.textContent = `Move your airplane by ${diceResult}`;
   incrementDisplay.innerHTML = '+' + diceResult;
   btnContainer.appendChild(incrementDisplay);
 }
@@ -103,6 +98,10 @@ function plusCounter() {
     if(incrementDisplayValue>0) {
       incrementDisplay.textContent = `+${incrementDisplayValue-1}`;
       incrementDisplayValue--;
+
+      if(incrementDisplay.textContent === '+0') {
+        incrementDisplay.textContent = '';
+      }
 
       count++;
       counterDisplay.textContent = count;
@@ -120,21 +119,14 @@ function plusCounter() {
           icon: "success"
         });  
         reset();
-        // count = 0;
-        // counterDisplay.textContent = count;
-        // btnContainer.removeChild(incrementDisplay);
-        // console.log(incrementDisplayValue);
-          //DA AGGIUNGERE SE VINCI CHE SI RESETTA TUTTO
         }
     } else {
-      incrementDisplay.textContent = 'Roll the dice';
       isPlusBtnBlocked = true;
     }
   } 
   else {
     Swal.fire("Roll the dice first!");
   }
-  
 }
 
 function minusCounter() {
@@ -168,9 +160,9 @@ function msg(incrementDisplayValue,incrementDisplayValue, incrementDisplay) {
 }
 
 function generateProbability(incrementDisplayValue, incrementDisplay) {
-  const negativeMsg = ['passaporto', 'perdi aereo', 'hai speso tutto'];
+  const negativeMsg = ['You lost the passport', 'Lost the flight', 'You finished your budget', 'You are turned away at the border', 'Your visa expired' ];
   const negativeMsgRandomIndex = Math.floor(Math.random() * negativeMsg.length) ;
-  const positiveMsg = ['hai vinto biglietto', 'fai amicizia', 'vinci un viaggio gratis'];
+  const positiveMsg = ['You win a flight ticket', 'You meet a new travel buddy', 'Take an unforgettable photo', 'Hostel party', 'You are living your best life'];
   const positiveMsgRandomIndex = Math.floor(Math.random() * positiveMsg.length);
   const extraMovement = Math.floor(Math.random() * 4) + 1;
   const probability = Math.round(Math.random() * 100);
@@ -179,7 +171,7 @@ function generateProbability(incrementDisplayValue, incrementDisplay) {
     console.log(count);
     Swal.fire({
       title: negativeMsg[negativeMsgRandomIndex],
-      text: `torna indietro di ${extraMovement} caselle`,
+      text: `Go back by ${extraMovement}`,
     });
     isMinusBtnBlocked = false;
 
@@ -189,14 +181,15 @@ function generateProbability(incrementDisplayValue, incrementDisplay) {
   } else if(probability > 70 && count !== 29) {
     Swal.fire({
       title: positiveMsg[positiveMsgRandomIndex],
-      text: `vai avanti di ${extraMovement} caselle`,
+      text: `Go forward by ${extraMovement}`,
     });
     incrementDisplayValue = extraMovement;
     incrementDisplay.textContent = `+${incrementDisplayValue}`;
+   
   } 
 }
 
-function reset() {   //ricontrolla reset 
+function reset() {   
   document.getElementById(`flag-${count+1}`).removeChild(airplane);
   const nextFlag = document.getElementById('flag-1');
   nextFlag.appendChild(airplane);
@@ -204,6 +197,8 @@ function reset() {   //ricontrolla reset
   count = 0;
   counterDisplay.textContent = count;
   btnContainer.removeChild(incrementDisplay);
+  decrementDisplay.textContent = '';
+
 
   diceContainer.removeChild(diceImg);
   diceContainer.removeChild(resultParagraph);
@@ -233,10 +228,15 @@ diceBtn.addEventListener('click', () => {
 
 //rules
 rulesBtn.addEventListener('click', () => {
+
   Swal.fire({
+    icon: "info",
     title: "Rules",
-    text: "questa è una riga",
-    icon: "info"
+    text: `Welcome in Counter Journey,
+    your goal is to arrive at the end of the gameboard.
+    Roll the dice, then go forward with your plane clicking '+' (Who knows where it will take you).
+    Look out, there could be some unforeseen events on the way.`,
+    footer: `"To travel is to take a journey into yourself." - Danny Kaye`,
   });
 })
 
