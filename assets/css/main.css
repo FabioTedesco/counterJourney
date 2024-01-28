@@ -13,7 +13,7 @@ body {
 }
 
 h1 {
-  margin: 20px;
+  margin: 10px;
 }
 
 button {
@@ -35,7 +35,7 @@ button:hover {
 .diceContainer {
   display: flex;
   align-items: center;
-  margin: 20px 0;
+  margin: 10px 0;
   justify-content: center;
 }
 .diceContainer img {
@@ -63,7 +63,7 @@ button:hover {
 .counterContainer .rulesContainer {
   display: flex;
   justify-content: space-around;
-  padding: 50px 0;
+  padding: 40px 0;
 }
 
 .boardgame {
@@ -71,7 +71,7 @@ button:hover {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   column-gap: 5px;
   row-gap: 5px;
-  margin: 10px 5%;
+  margin: 5px 5%;
   border: 1px solid rgb(198, 185, 160);
   padding: 10px 0;
 }
@@ -85,7 +85,6 @@ button:hover {
 }
 .boardgame .box .aereo {
   position: absolute;
-  z-index: 1;
   left: 0;
 }
 
@@ -93,6 +92,10 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
   background-color: rgba(198, 185, 160, 0.8);
   color: white;
 }
