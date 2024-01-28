@@ -3,7 +3,6 @@
 const diceContainer = document.createElement('div');
 diceContainer.id = 'diceContainer';
 diceContainer.classList.add('diceContainer');
-
 const diceBtn = document.createElement('button');
 diceBtn.textContent = 'Roll the dice';
 
@@ -11,9 +10,6 @@ const diceImg = document.createElement('img');
 diceImg.style.display = 'none';
 
 const resultParagraph = document.createElement('p');
-
-document.body.append(diceContainer);
-diceContainer.appendChild(diceBtn);
 
 //CREATE COUNTER CONTAINER
 //counter container
@@ -70,6 +66,8 @@ github.setAttribute('target', '_blank');
 const githubImg = document.createElement('img');
 githubImg.src = 'assets/img/social/icons8-github.svg';
 
+document.body.append(diceContainer);
+  diceContainer.appendChild(diceBtn);
 document.body.append(counterContainer);
   counterContainer.appendChild(h2pContainer);
     h2pContainer.appendChild(counterH2);
@@ -118,7 +116,6 @@ function plusCounter() {
   if(isPlusBtnBlocked === false) {
     let incrementDisplayValue = incrementDisplay.textContent;
     incrementDisplayValue = parseInt(incrementDisplayValue);
-  
     if(incrementDisplayValue>0) {
       incrementDisplay.textContent = `+${incrementDisplayValue-1}`;
       incrementDisplayValue--;
@@ -177,6 +174,24 @@ function minusCounter() {
   }
 }
 
+function reset() {   
+  document.getElementById(`flag-${count+1}`).removeChild(airplane);
+  const nextFlag = document.getElementById('flag-1');
+  nextFlag.appendChild(airplane);
+
+  count = 0;
+  counterDisplay.textContent = count;
+  btnContainer.removeChild(incrementDisplay);
+  decrementDisplay.textContent = '';
+
+
+  diceContainer.removeChild(diceImg);
+  diceContainer.removeChild(resultParagraph);
+
+  isPlusBtnBlocked = true;
+  isMinusBtnBlocked = true;
+}
+
 function msg(incrementDisplayValue,incrementDisplayValue, incrementDisplay) {
   if(incrementDisplayValue === 0) {
     generateProbability(incrementDisplayValue, incrementDisplay);
@@ -208,27 +223,8 @@ function generateProbability(incrementDisplayValue, incrementDisplay) {
       text: `Go forward by ${extraMovement}`,
     });
     incrementDisplayValue = extraMovement;
-    incrementDisplay.textContent = `+${incrementDisplayValue}`;
-   
+    incrementDisplay.textContent = `+${incrementDisplayValue}`;  
   } 
-}
-
-function reset() {   
-  document.getElementById(`flag-${count+1}`).removeChild(airplane);
-  const nextFlag = document.getElementById('flag-1');
-  nextFlag.appendChild(airplane);
-
-  count = 0;
-  counterDisplay.textContent = count;
-  btnContainer.removeChild(incrementDisplay);
-  decrementDisplay.textContent = '';
-
-
-  diceContainer.removeChild(diceImg);
-  diceContainer.removeChild(resultParagraph);
-
-  isPlusBtnBlocked = true;
-  isMinusBtnBlocked = true;
 }
 
 //EVENTS
