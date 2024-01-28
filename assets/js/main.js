@@ -85,8 +85,8 @@ document.body.append(footer);
   footer.appendChild(socialContainer);
     socialContainer.appendChild(linkedin);
       linkedin.appendChild(linkedinImg);
-      linkedin.appendChild(instagramImg);
-      linkedin.appendChild(githubImg);
+      instagram.appendChild(instagramImg);
+      github.appendChild(githubImg);
     socialContainer.appendChild(instagram);
     socialContainer.appendChild(github);
 
@@ -237,7 +237,7 @@ diceBtn.addEventListener('click', () => {
   rollDice();
 });
 
-//counter
+//Counter events
   plusBtn.addEventListener('click', () => {
      plusCounter();
   })
