@@ -1,3 +1,7 @@
+html {
+  height: 100%;
+}
+
 body {
   font-family: "Montserrat", sans-serif;
   text-align: center;
@@ -62,7 +66,7 @@ button:hover {
 }
 .counterContainer .rulesContainer {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   padding: 40px 0;
 }
 
@@ -94,8 +98,7 @@ footer {
   align-items: center;
   position: fixed;
   bottom: 0;
-  right: 0;
-  left: 0;
+  width: 100%;
   background-color: rgba(198, 185, 160, 0.8);
   color: white;
 }

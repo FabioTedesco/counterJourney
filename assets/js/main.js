@@ -107,7 +107,7 @@ function rollDice() {
 
   const value = Math.floor(Math.random() * 6) + 1;
   diceResult = value;
-  diceImg.src = `assets/img/Dice-${diceResult}.png`;
+  diceImg.src = `assets/img/dice-img/Dice-${diceResult}.png`;
   diceImg.style.display = 'block';
   resultParagraph.textContent = `Move your airplane by ${diceResult}`;
   incrementDisplay.innerHTML = '+' + diceResult;
