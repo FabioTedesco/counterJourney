@@ -58,17 +58,17 @@ const linkedin = document.createElement('a');
 linkedin.setAttribute('href', "https://www.linkedin.com/in/fabio-tedesco-3bb865251/");
 linkedin.setAttribute('target', '_blank');
 const linkedinImg = document.createElement('img');
-linkedinImg.src = '/img/social/icons8-linkedin.svg';
+linkedinImg.src = 'assets/img/social/icons8-linkedin.svg';
 const instagram = document.createElement('a');
 instagram.setAttribute('href', "https://www.instagram.com/fabioo_pueblo/");
 instagram.setAttribute('target', '_blank');
 const instagramImg = document.createElement('img');
-instagramImg.src = '/img/social/icons8-instagram.svg';
+instagramImg.src = 'assets/img/social/icons8-instagram.svg';
 const github = document.createElement('a');
 github.setAttribute('href', "https://github.com/FabioTedesco?tab=repositories");
 github.setAttribute('target', '_blank');
 const githubImg = document.createElement('img');
-githubImg.src = '/img/social/icons8-github.svg';
+githubImg.src = 'assets/img/social/icons8-github.svg';
 
 document.body.append(counterContainer);
   counterContainer.appendChild(h2pContainer);
@@ -107,7 +107,7 @@ function rollDice() {
 
   const value = Math.floor(Math.random() * 6) + 1;
   diceResult = value;
-  diceImg.src = `/img/Dice-${diceResult}.png`;
+  diceImg.src = `assets/img/Dice-${diceResult}.png`;
   diceImg.style.display = 'block';
   resultParagraph.textContent = `Move your airplane by ${diceResult}`;
   incrementDisplay.innerHTML = '+' + diceResult;
