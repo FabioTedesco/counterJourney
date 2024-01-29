@@ -91,7 +91,7 @@ document.body.append(footer);
 //VARIABLES
   let diceResult;
   let isPlusBtnBlocked = true;
-  isMinusBtnBlocked = true;
+  let isMinusBtnBlocked = true;
   let count = 0;
   const boardContainer = document.getElementById('boardgame');
   const airplane = document.getElementById('airplane');
@@ -99,17 +99,20 @@ document.body.append(footer);
 
 //FUNCTIONS
 function rollDice() {
-  isPlusBtnBlocked = false;
-  diceContainer.appendChild(diceImg);
-  diceContainer.appendChild(resultParagraph);
+    isPlusBtnBlocked = false;
+    diceContainer.appendChild(diceImg);
+    diceContainer.appendChild(resultParagraph);
+  
+    const value = Math.floor(Math.random() * 6) + 1;
+    diceResult = value;
+    diceImg.src = `assets/img/dice-img/Dice-${diceResult}.png`;
+    diceImg.style.display = 'block';
+    resultParagraph.textContent = `Move your airplane by ${diceResult}`;
+    incrementDisplay.innerHTML = '+' + diceResult;
+    btnContainer.appendChild(incrementDisplay);
+    isRollDiceBtnBlocked = true;
+  
 
-  const value = Math.floor(Math.random() * 6) + 1;
-  diceResult = value;
-  diceImg.src = `assets/img/dice-img/Dice-${diceResult}.png`;
-  diceImg.style.display = 'block';
-  resultParagraph.textContent = `Move your airplane by ${diceResult}`;
-  incrementDisplay.innerHTML = '+' + diceResult;
-  btnContainer.appendChild(incrementDisplay);
 }
 
 function plusCounter() {
@@ -131,7 +134,7 @@ function plusCounter() {
       const nextFlag = document.getElementById(`flag-${count}`).nextElementSibling;
       nextFlag.appendChild(airplane);
 
-      msg(incrementDisplayValue, incrementDisplayValue, incrementDisplay);
+      msg(incrementDisplayValue, incrementDisplay);
       
       if(count === 29) {                
         Swal.fire({
@@ -192,7 +195,7 @@ function reset() {
   isMinusBtnBlocked = true;
 }
 
-function msg(incrementDisplayValue,incrementDisplayValue, incrementDisplay) {
+function msg(incrementDisplayValue, incrementDisplay) {
   if(incrementDisplayValue === 0) {
     generateProbability(incrementDisplayValue, incrementDisplay);
   }

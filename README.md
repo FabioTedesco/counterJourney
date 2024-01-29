@@ -8,7 +8,7 @@ This is the final project for [start2impact](https://www.start2impact.it/) cours
 <br><br>
 
 <a href="https://counterjourney.netlify.app/">✈️ PLAY COUNTER JOURNEY</a><br><br>
-<a href="">📜 READ PRESENTATION </a>
+<a href="https://drive.google.com/drive/folders/1ZN4UUFvIvNjvkbN0f4iDAsKF9_qsFUGm?hl=it">📜 READ PRESENTATION (ITA)</a>
 
 ## GAMEPLAY
 
@@ -53,4 +53,12 @@ Surprises are an integral part of the adventure, with positive and negative unfo
 [![Linkedin](https://skillicons.dev/icons?i=linkedin)](https://www.instagram.com/fabioo_pueblo/) 
 [![Github](https://skillicons.dev/icons?i=github)](https://github.com/FabioTedesco?tab=repositories)
 
+## Acknowledgments
+
+[sweetalert2](https://sweetalert2.github.io/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+[def]: https://sweetalert2.github.io/
