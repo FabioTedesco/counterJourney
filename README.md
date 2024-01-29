@@ -8,7 +8,7 @@ This is the final project for [start2impact](https://www.start2impact.it/) cours
 <br><br>
 
 <a href="https://counterjourney.netlify.app/">✈️ PLAY COUNTER JOURNEY</a><br><br>
-<a href="https://drive.google.com/drive/folders/1ZN4UUFvIvNjvkbN0f4iDAsKF9_qsFUGm?hl=it">📜 READ PRESENTATION (ITA)</a>
+<a href="https://drive.google.com/file/d/1_XjMMadAgHUyenBlH58Z596ho0hp3050/view?usp=drive_link">📜 READ PRESENTATION (ITA)</a>
 
 ## GAMEPLAY
 
